@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react'
 import { getTags } from '../../../actions/tag'
 import { getTagsData } from '../../../actions/admin'
 import { getCookie } from '../../../actions/auth'
-import {Doughnut} from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import ColorHash from 'color-hash'
+
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
@@ -18,6 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 export default () => {
+  const colorHash = new ColorHash({ hue: [{ min: 30, max: 90 }, { min: 180, max: 210 }, { min: 270, max: 285 }] });
   const classes = useStyles();
   const [month_, setMonth] = React.useState(11);
   const [year_, setYear] = React.useState(2019);
@@ -29,13 +32,13 @@ export default () => {
         return console.log(tags.error)
       }
       return tags
-    }).then(tags => { 
-      if (tags) { 
-        getTagsData(token, month_, year_).then((res) => { 
+    }).then(tags => {
+      if (tags) {
+        getTagsData(token, month_, year_).then((res) => {
           if (res.error) {
             console.log(res.error)
           }
-          else { 
+          else {
             const result = [res, tags].reduce((a, b) => a.map((c, i) => Object.assign({}, c, b[i])));
             setChartData(result)
 
@@ -47,21 +50,17 @@ export default () => {
   return (
     <>
       <Doughnut data={{
-	labels: chartData.map(({name},i)=>name),
-	datasets: [{
-		data:chartData.map(({count},i)=>count),
-		backgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		],
-		hoverBackgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		]
-	}]
-}} />
+        labels: chartData.map(({ name }, i) => name),
+        datasets: [{
+          data: chartData.map(({ count }, i) => count),
+          backgroundColor: chartData.map(({ name, _id }, i) => colorHash.hex(name)),
+          hoverBackgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56'
+          ]
+        }]
+      }} />
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">chose Month</InputLabel>
         <Select

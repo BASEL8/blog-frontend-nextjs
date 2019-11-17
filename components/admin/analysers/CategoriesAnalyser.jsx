@@ -8,6 +8,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import ColorHash from 'color-hash'
+
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
@@ -18,6 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 export default () => {
+    const colorHash = new ColorHash({ hue: [{ min: 30, max: 90 }, { min: 180, max: 210 }, { min: 270, max: 285 }] });
   const classes = useStyles();
   const [month_, setMonth] = React.useState(11);
   const [year_, setYear] = React.useState(2019);
@@ -52,11 +55,7 @@ export default () => {
 	labels: chartData.map(({name},i)=>name),
 	datasets: [{
 		data:chartData.map(({count},i)=>count),
-		backgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		],
+		backgroundColor:  chartData.map(({ name, _id }, i) => colorHash.hex(name)),
 		hoverBackgroundColor: [
 		'#FF6384',
 		'#36A2EB',

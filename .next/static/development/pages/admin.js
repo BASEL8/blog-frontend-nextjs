@@ -2364,12 +2364,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/index.js");
 /* harmony import */ var _material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/FormControl */ "./node_modules/@material-ui/core/esm/FormControl/index.js");
 /* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/core/Select */ "./node_modules/@material-ui/core/esm/Select/index.js");
+/* harmony import */ var color_hash__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! color-hash */ "./node_modules/color-hash/lib/color-hash.js");
+/* harmony import */ var color_hash__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(color_hash__WEBPACK_IMPORTED_MODULE_13__);
 
 
 
 var _jsxFileName = "/Users/baselmunawwar/Desktop/nextjs/firstApp/components/admin/analysers/CategoriesAnalyser.jsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
+
 
 
 
@@ -2392,6 +2395,18 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__["ma
   };
 });
 /* harmony default export */ __webpack_exports__["default"] = (function () {
+  var colorHash = new color_hash__WEBPACK_IMPORTED_MODULE_13___default.a({
+    hue: [{
+      min: 30,
+      max: 90
+    }, {
+      min: 180,
+      max: 210
+    }, {
+      min: 270,
+      max: 285
+    }]
+  });
   var classes = useStyles();
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_3___default.a.useState(11),
@@ -2446,27 +2461,31 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__["ma
           var count = _ref2.count;
           return count;
         }),
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        backgroundColor: chartData.map(function (_ref3, i) {
+          var name = _ref3.name,
+              _id = _ref3._id;
+          return colorHash.hex(name);
+        }),
         hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
       }]
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 51
+      lineNumber: 54
     },
     __self: this
   }), __jsx(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_11__["default"], {
     className: classes.formControl,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 66
     },
     __self: this
   }, __jsx(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_9__["default"], {
     id: "demo-simple-select-label",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 68
+      lineNumber: 67
     },
     __self: this
   }, "chose Month"), __jsx(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_12__["default"], {
@@ -2478,7 +2497,7 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__["ma
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69
+      lineNumber: 68
     },
     __self: this
   }, ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map(function (month, i) {
@@ -2487,7 +2506,7 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__["ma
       value: i + 1,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 75
+        lineNumber: 74
       },
       __self: this
     }, month);
@@ -2495,14 +2514,14 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__["ma
     className: classes.formControl,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 77
     },
     __self: this
   }, __jsx(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_9__["default"], {
     id: "demo-simple-select-label",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 78
     },
     __self: this
   }, "chose Month"), __jsx(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_12__["default"], {
@@ -2514,7 +2533,7 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__["ma
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 79
     },
     __self: this
   }, Array(10).fill('').map(function (month, i) {
@@ -2523,7 +2542,7 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__["ma
       value: 2019 + i,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 86
+        lineNumber: 85
       },
       __self: this
     }, 2019 + i);
@@ -2557,12 +2576,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/index.js");
 /* harmony import */ var _material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/FormControl */ "./node_modules/@material-ui/core/esm/FormControl/index.js");
 /* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/core/Select */ "./node_modules/@material-ui/core/esm/Select/index.js");
+/* harmony import */ var color_hash__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! color-hash */ "./node_modules/color-hash/lib/color-hash.js");
+/* harmony import */ var color_hash__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(color_hash__WEBPACK_IMPORTED_MODULE_13__);
 
 
 
 var _jsxFileName = "/Users/baselmunawwar/Desktop/nextjs/firstApp/components/admin/analysers/TagsAnalyser.jsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
+
 
 
 
@@ -2585,6 +2607,18 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__["ma
   };
 });
 /* harmony default export */ __webpack_exports__["default"] = (function () {
+  var colorHash = new color_hash__WEBPACK_IMPORTED_MODULE_13___default.a({
+    hue: [{
+      min: 30,
+      max: 90
+    }, {
+      min: 180,
+      max: 210
+    }, {
+      min: 270,
+      max: 285
+    }]
+  });
   var classes = useStyles();
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_3___default.a.useState(11),
@@ -2637,27 +2671,31 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__["ma
           var count = _ref2.count;
           return count;
         }),
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        backgroundColor: chartData.map(function (_ref3, i) {
+          var name = _ref3.name,
+              _id = _ref3._id;
+          return colorHash.hex(name);
+        }),
         hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
       }]
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 49
+      lineNumber: 52
     },
     __self: this
   }), __jsx(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_11__["default"], {
     className: classes.formControl,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 65
+      lineNumber: 64
     },
     __self: this
   }, __jsx(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_9__["default"], {
     id: "demo-simple-select-label",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 65
     },
     __self: this
   }, "chose Month"), __jsx(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_12__["default"], {
@@ -2669,7 +2707,7 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__["ma
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 66
     },
     __self: this
   }, ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map(function (month, i) {
@@ -2678,7 +2716,7 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__["ma
       value: i + 1,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 73
+        lineNumber: 72
       },
       __self: this
     }, month);
@@ -2686,14 +2724,14 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__["ma
     className: classes.formControl,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 76
+      lineNumber: 75
     },
     __self: this
   }, __jsx(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_9__["default"], {
     id: "demo-simple-select-label",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77
+      lineNumber: 76
     },
     __self: this
   }, "chose Month"), __jsx(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_12__["default"], {
@@ -2705,7 +2743,7 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__["ma
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 77
     },
     __self: this
   }, Array(10).fill('').map(function (month, i) {
@@ -2714,7 +2752,7 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__["ma
       value: 2019 + i,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 84
+        lineNumber: 83
       },
       __self: this
     }, 2019 + i);
@@ -40641,6 +40679,169 @@ function toVal(mix) {
 	}
 	return str;
 });
+
+
+/***/ }),
+
+/***/ "./node_modules/color-hash/lib/bkdr-hash.js":
+/*!**************************************************!*\
+  !*** ./node_modules/color-hash/lib/bkdr-hash.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * BKDR Hash (modified version)
+ *
+ * @param {String} str string to hash
+ * @returns {Number}
+ */
+var BKDRHash = function(str) {
+    var seed = 131;
+    var seed2 = 137;
+    var hash = 0;
+    // make hash more sensitive for short string like 'a', 'b', 'c'
+    str += 'x';
+    // Note: Number.MAX_SAFE_INTEGER equals 9007199254740991
+    var MAX_SAFE_INTEGER = parseInt(9007199254740991 / seed2);
+    for(var i = 0; i < str.length; i++) {
+        if(hash > MAX_SAFE_INTEGER) {
+            hash = parseInt(hash / seed2);
+        }
+        hash = hash * seed + str.charCodeAt(i);
+    }
+    return hash;
+};
+
+module.exports = BKDRHash;
+
+
+/***/ }),
+
+/***/ "./node_modules/color-hash/lib/color-hash.js":
+/*!***************************************************!*\
+  !*** ./node_modules/color-hash/lib/color-hash.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var BKDRHash = __webpack_require__(/*! ./bkdr-hash */ "./node_modules/color-hash/lib/bkdr-hash.js");
+
+/**
+ * Convert RGB Array to HEX
+ *
+ * @param {Array} RGBArray - [R, G, B]
+ * @returns {String} 6 digits hex starting with #
+ */
+var RGB2HEX = function(RGBArray) {
+    var hex = '#';
+    RGBArray.forEach(function(value) {
+        if (value < 16) {
+            hex += 0;
+        }
+        hex += value.toString(16);
+    });
+    return hex;
+};
+
+/**
+ * Convert HSL to RGB
+ *
+ * @see {@link http://zh.wikipedia.org/wiki/HSL和HSV色彩空间} for further information.
+ * @param {Number} H Hue ∈ [0, 360)
+ * @param {Number} S Saturation ∈ [0, 1]
+ * @param {Number} L Lightness ∈ [0, 1]
+ * @returns {Array} R, G, B ∈ [0, 255]
+ */
+var HSL2RGB = function(H, S, L) {
+    H /= 360;
+
+    var q = L < 0.5 ? L * (1 + S) : L + S - L * S;
+    var p = 2 * L - q;
+
+    return [H + 1/3, H, H - 1/3].map(function(color) {
+        if(color < 0) {
+            color++;
+        }
+        if(color > 1) {
+            color--;
+        }
+        if(color < 1/6) {
+            color = p + (q - p) * 6 * color;
+        } else if(color < 0.5) {
+            color = q;
+        } else if(color < 2/3) {
+            color = p + (q - p) * 6 * (2/3 - color);
+        } else {
+            color = p;
+        }
+        return Math.round(color * 255);
+    });
+};
+
+/**
+ * Color Hash Class
+ *
+ * @class
+ */
+var ColorHash = function(options) {
+    options = options || {};
+
+    var LS = [options.lightness, options.saturation].map(function(param) {
+        param = param || [0.35, 0.5, 0.65]; // note that 3 is a prime
+        return Object.prototype.toString.call(param) === '[object Array]' ? param.concat() : [param];
+    });
+
+    this.L = LS[0];
+    this.S = LS[1];
+
+    this.hash = options.hash || BKDRHash;
+};
+
+/**
+ * Returns the hash in [h, s, l].
+ * Note that H ∈ [0, 360); S ∈ [0, 1]; L ∈ [0, 1];
+ *
+ * @param {String} str string to hash
+ * @returns {Array} [h, s, l]
+ */
+ColorHash.prototype.hsl = function(str) {
+    var H, S, L;
+    var hash = this.hash(str);
+
+    H = hash % 359; // note that 359 is a prime
+    hash = parseInt(hash / 360);
+    S = this.S[hash % this.S.length];
+    hash = parseInt(hash / this.S.length);
+    L = this.L[hash % this.L.length];
+
+    return [H, S, L];
+};
+
+/**
+ * Returns the hash in [r, g, b].
+ * Note that R, G, B ∈ [0, 255]
+ *
+ * @param {String} str string to hash
+ * @returns {Array} [r, g, b]
+ */
+ColorHash.prototype.rgb = function(str) {
+    var hsl = this.hsl(str);
+    return HSL2RGB.apply(this, hsl);
+};
+
+/**
+ * Returns the hash in hex
+ *
+ * @param {String} str string to hash
+ * @returns {String} hex with #
+ */
+ColorHash.prototype.hex = function(str) {
+    var rgb = this.rgb(str);
+    return RGB2HEX(rgb);
+};
+
+module.exports = ColorHash;
 
 
 /***/ }),

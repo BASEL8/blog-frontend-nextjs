@@ -2357,11 +2357,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/Select */ "@material-ui/core/Select");
 /* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var color_hash__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! color-hash */ "color-hash");
+/* harmony import */ var color_hash__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(color_hash__WEBPACK_IMPORTED_MODULE_12__);
 
 
 var _jsxFileName = "/Users/baselmunawwar/Desktop/nextjs/firstApp/components/admin/analysers/CategoriesAnalyser.jsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
+
 
 
 
@@ -2382,6 +2385,18 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
   }
 }));
 /* harmony default export */ __webpack_exports__["default"] = (() => {
+  const colorHash = new color_hash__WEBPACK_IMPORTED_MODULE_12___default.a({
+    hue: [{
+      min: 30,
+      max: 90
+    }, {
+      min: 180,
+      max: 210
+    }, {
+      min: 270,
+      max: 285
+    }]
+  });
   const classes = useStyles();
   const [month_, setMonth] = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(11);
   const [year_, setYear] = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(2019);
@@ -2421,27 +2436,30 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
         data: chartData.map(({
           count
         }, i) => count),
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        backgroundColor: chartData.map(({
+          name,
+          _id
+        }, i) => colorHash.hex(name)),
         hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
       }]
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 51
+      lineNumber: 54
     },
     __self: undefined
   }), __jsx(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_10___default.a, {
     className: classes.formControl,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 66
     },
     __self: undefined
   }, __jsx(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_8___default.a, {
     id: "demo-simple-select-label",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 68
+      lineNumber: 67
     },
     __self: undefined
   }, "chose Month"), __jsx(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_11___default.a, {
@@ -2451,7 +2469,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
     onChange: event => setMonth(_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default()(event.target.value)),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69
+      lineNumber: 68
     },
     __self: undefined
   }, ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map((month, i) => __jsx(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_9___default.a, {
@@ -2459,21 +2477,21 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
     value: i + 1,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 75
+      lineNumber: 74
     },
     __self: undefined
   }, month)))), __jsx(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_10___default.a, {
     className: classes.formControl,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 77
     },
     __self: undefined
   }, __jsx(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_8___default.a, {
     id: "demo-simple-select-label",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 78
     },
     __self: undefined
   }, "chose Month"), __jsx(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_11___default.a, {
@@ -2483,7 +2501,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
     onChange: event => setYear(_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default()(event.target.value)),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 79
     },
     __self: undefined
   }, Array(10).fill('').map((month, i) => __jsx(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_9___default.a, {
@@ -2491,7 +2509,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
     value: 2019 + i,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86
+      lineNumber: 85
     },
     __self: undefined
   }, 2019 + i)))));
@@ -2529,11 +2547,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/Select */ "@material-ui/core/Select");
 /* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var color_hash__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! color-hash */ "color-hash");
+/* harmony import */ var color_hash__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(color_hash__WEBPACK_IMPORTED_MODULE_12__);
 
 
 var _jsxFileName = "/Users/baselmunawwar/Desktop/nextjs/firstApp/components/admin/analysers/TagsAnalyser.jsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
+
 
 
 
@@ -2554,6 +2575,18 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
   }
 }));
 /* harmony default export */ __webpack_exports__["default"] = (() => {
+  const colorHash = new color_hash__WEBPACK_IMPORTED_MODULE_12___default.a({
+    hue: [{
+      min: 30,
+      max: 90
+    }, {
+      min: 180,
+      max: 210
+    }, {
+      min: 270,
+      max: 285
+    }]
+  });
   const classes = useStyles();
   const [month_, setMonth] = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(11);
   const [year_, setYear] = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(2019);
@@ -2591,27 +2624,30 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
         data: chartData.map(({
           count
         }, i) => count),
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        backgroundColor: chartData.map(({
+          name,
+          _id
+        }, i) => colorHash.hex(name)),
         hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
       }]
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 49
+      lineNumber: 52
     },
     __self: undefined
   }), __jsx(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_10___default.a, {
     className: classes.formControl,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 65
+      lineNumber: 64
     },
     __self: undefined
   }, __jsx(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_8___default.a, {
     id: "demo-simple-select-label",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 65
     },
     __self: undefined
   }, "chose Month"), __jsx(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_11___default.a, {
@@ -2621,7 +2657,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
     onChange: event => setMonth(_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default()(event.target.value)),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 66
     },
     __self: undefined
   }, ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map((month, i) => __jsx(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_9___default.a, {
@@ -2629,21 +2665,21 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
     value: i + 1,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 73
+      lineNumber: 72
     },
     __self: undefined
   }, month)))), __jsx(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_10___default.a, {
     className: classes.formControl,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 76
+      lineNumber: 75
     },
     __self: undefined
   }, __jsx(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_8___default.a, {
     id: "demo-simple-select-label",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77
+      lineNumber: 76
     },
     __self: undefined
   }, "chose Month"), __jsx(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_11___default.a, {
@@ -2653,7 +2689,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
     onChange: event => setYear(_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default()(event.target.value)),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 77
     },
     __self: undefined
   }, Array(10).fill('').map((month, i) => __jsx(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_9___default.a, {
@@ -2661,7 +2697,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
     value: 2019 + i,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 84
+      lineNumber: 83
     },
     __self: undefined
   }, 2019 + i)))));
@@ -5491,6 +5527,17 @@ module.exports = require("@material-ui/icons/Search");
 /***/ (function(module, exports) {
 
 module.exports = require("clsx");
+
+/***/ }),
+
+/***/ "color-hash":
+/*!*****************************!*\
+  !*** external "color-hash" ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("color-hash");
 
 /***/ }),
 

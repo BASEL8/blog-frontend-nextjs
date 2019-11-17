@@ -16,6 +16,7 @@
     "@material-ui/icons": "^4.5.1",
     "@zeit/next-css": "^1.0.1",
     "chart.js": "^2.9.3",
+    "color-hash": "^1.0.3",
     "countable": "^3.0.1",
     "isomorphic-fetch": "^2.2.1",
     "js-cookie": "^2.2.1",
