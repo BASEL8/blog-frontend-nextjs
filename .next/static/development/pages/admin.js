@@ -1,5 +1,55 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/admin.js"],{
 
+/***/ "./actions/admin.js":
+/*!**************************!*\
+  !*** ./actions/admin.js ***!
+  \**************************/
+/*! exports provided: getData, getBlogsData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getData", function() { return getData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBlogsData", function() { return getBlogsData; });
+/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! isomorphic-fetch */ "./node_modules/isomorphic-fetch/fetch-npm-browserify.js");
+/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./config.js");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth */ "./actions/auth.js");
+
+
+
+var getData = function getData(token) {
+  console.log("".concat(_config__WEBPACK_IMPORTED_MODULE_1__["API"], "/admin/data"));
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_1__["API"], "/admin/data"), {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      Authorization: "Bearer ".concat(token)
+    }
+  }).then(function (res) {
+    Object(_auth__WEBPACK_IMPORTED_MODULE_2__["handleResponse"])(res);
+    return res.json();
+  })["catch"](function (error) {
+    return error;
+  });
+};
+var getBlogsData = function getBlogsData(token) {
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()("".concat(_config__WEBPACK_IMPORTED_MODULE_1__["API"], "/admin/data/blogs"), {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      Authorization: "Bearer ".concat(token)
+    }
+  }).then(function (res) {
+    Object(_auth__WEBPACK_IMPORTED_MODULE_2__["handleResponse"])(res);
+    return res.json();
+  })["catch"](function (error) {
+    return error;
+  });
+};
+
+/***/ }),
+
 /***/ "./actions/auth.js":
 /*!*************************!*\
   !*** ./actions/auth.js ***!
@@ -1539,6 +1589,233 @@ var IsAdminRoute = function IsAdminRoute(_ref) {
 
 /***/ }),
 
+/***/ "./components/admin/BlogData.jsx":
+/*!***************************************!*\
+  !*** ./components/admin/BlogData.jsx ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions_admin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/admin */ "./actions/admin.js");
+/* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/auth */ "./actions/auth.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+/* harmony import */ var _material_ui_core_List__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/List */ "./node_modules/@material-ui/core/esm/List/index.js");
+/* harmony import */ var _material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/ListItem */ "./node_modules/@material-ui/core/esm/ListItem/index.js");
+/* harmony import */ var _material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/ListItemText */ "./node_modules/@material-ui/core/esm/ListItemText/index.js");
+/* harmony import */ var _material_ui_core_ListItemAvatar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/ListItemAvatar */ "./node_modules/@material-ui/core/esm/ListItemAvatar/index.js");
+/* harmony import */ var _material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js");
+/* harmony import */ var _material_ui_icons_LocalOfferSharp__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/icons/LocalOfferSharp */ "./node_modules/@material-ui/icons/LocalOfferSharp.js");
+/* harmony import */ var _material_ui_icons_LocalOfferSharp__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_LocalOfferSharp__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _material_ui_icons_CategorySharp__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/icons/CategorySharp */ "./node_modules/@material-ui/icons/CategorySharp.js");
+/* harmony import */ var _material_ui_icons_CategorySharp__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_CategorySharp__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _material_ui_icons_PeopleAltSharp__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/icons/PeopleAltSharp */ "./node_modules/@material-ui/icons/PeopleAltSharp.js");
+/* harmony import */ var _material_ui_icons_PeopleAltSharp__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_PeopleAltSharp__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _material_ui_icons_DescriptionSharp__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/icons/DescriptionSharp */ "./node_modules/@material-ui/icons/DescriptionSharp.js");
+/* harmony import */ var _material_ui_icons_DescriptionSharp__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_DescriptionSharp__WEBPACK_IMPORTED_MODULE_12__);
+var _jsxFileName = "/Users/baselmunawwar/Desktop/nextjs/firstApp/components/admin/BlogData.jsx";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+
+
+
+
+
+
+
+
+
+var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["makeStyles"])(function (theme) {
+  return {
+    root: {
+      width: '100%',
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper
+    }
+  };
+});
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var classes = useStyles();
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    blogs: 0,
+    users: 0,
+    categories: 0,
+    tags: 0
+  }),
+      data = _useState[0],
+      setData = _useState[1];
+
+  var blogs = data.blogs,
+      users = data.users,
+      categories = data.categories,
+      tags = data.tags;
+  var token = Object(_actions_auth__WEBPACK_IMPORTED_MODULE_2__["getCookie"])('token');
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    Object(_actions_admin__WEBPACK_IMPORTED_MODULE_1__["getData"])(token).then(function (res) {
+      if (res.error) {
+        return console.log(res.error);
+      }
+
+      var blogs = res.blogs,
+          users = res.users,
+          categories = res.categories,
+          tags = res.tags;
+      setData({
+        blogs: blogs,
+        users: users,
+        categories: categories,
+        tags: tags
+      });
+    });
+  }, []);
+  return __jsx(_material_ui_core_List__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: classes.root,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39
+    },
+    __self: this
+  }, __jsx(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 40
+    },
+    __self: this
+  }, __jsx(_material_ui_core_ListItemAvatar__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 41
+    },
+    __self: this
+  }, __jsx(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 42
+    },
+    __self: this
+  }, __jsx(_material_ui_icons_DescriptionSharp__WEBPACK_IMPORTED_MODULE_12___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 43
+    },
+    __self: this
+  }))), __jsx(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    primary: "Blogs",
+    secondary: blogs,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 46
+    },
+    __self: this
+  })), __jsx(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48
+    },
+    __self: this
+  }, __jsx(_material_ui_core_ListItemAvatar__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49
+    },
+    __self: this
+  }, __jsx(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: this
+  }, __jsx(_material_ui_icons_PeopleAltSharp__WEBPACK_IMPORTED_MODULE_11___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: this
+  }))), __jsx(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    primary: "Users",
+    secondary: users,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 54
+    },
+    __self: this
+  })), __jsx(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 56
+    },
+    __self: this
+  }, __jsx(_material_ui_core_ListItemAvatar__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 57
+    },
+    __self: this
+  }, __jsx(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 58
+    },
+    __self: this
+  }, __jsx(_material_ui_icons_LocalOfferSharp__WEBPACK_IMPORTED_MODULE_9___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 59
+    },
+    __self: this
+  }))), __jsx(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    primary: "Tags",
+    secondary: tags,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 62
+    },
+    __self: this
+  })), __jsx(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 64
+    },
+    __self: this
+  }, __jsx(_material_ui_core_ListItemAvatar__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 65
+    },
+    __self: this
+  }, __jsx(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 66
+    },
+    __self: this
+  }, __jsx(_material_ui_icons_CategorySharp__WEBPACK_IMPORTED_MODULE_10___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 67
+    },
+    __self: this
+  }))), __jsx(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    primary: "Categories",
+    secondary: categories,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 70
+    },
+    __self: this
+  })));
+});
+
+/***/ }),
+
 /***/ "./components/admin/SideList.jsx":
 /*!***************************************!*\
   !*** ./components/admin/SideList.jsx ***!
@@ -1681,9 +1958,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js");
 /* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
 /* harmony import */ var _SideList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SideList */ "./components/admin/SideList.jsx");
+/* harmony import */ var _BlogData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BlogData */ "./components/admin/BlogData.jsx");
 var _jsxFileName = "/Users/baselmunawwar/Desktop/nextjs/firstApp/components/admin/index.jsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -1706,7 +1985,7 @@ function CenteredGrid() {
     className: classes.root,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 21
     },
     __self: this
   }, __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -1714,7 +1993,7 @@ function CenteredGrid() {
     spacing: 3,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 22
     },
     __self: this
   }, __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -1722,20 +2001,20 @@ function CenteredGrid() {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22
+      lineNumber: 23
     },
     __self: this
   }, __jsx(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: classes.paper,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 24
     },
     __self: this
   }, __jsx(_SideList__WEBPACK_IMPORTED_MODULE_4__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 25
     },
     __self: this
   }))), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -1744,36 +2023,26 @@ function CenteredGrid() {
     md: 6,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 28
     },
     __self: this
   }, __jsx(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: classes.paper,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 29
     },
     __self: this
-  }, "xs=6")), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    item: true,
-    xs: 12,
-    md: 6,
+  }, __jsx(_BlogData__WEBPACK_IMPORTED_MODULE_5__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 30
     },
     __self: this
-  }, __jsx(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: classes.paper,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 31
-    },
-    __self: this
-  }, "xs=6")), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }))), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
     item: true,
     xs: 12,
-    sm: 6,
+    md: 6,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 33
@@ -1786,7 +2055,7 @@ function CenteredGrid() {
       lineNumber: 34
     },
     __self: this
-  }, "xs=3")), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "xs=6")), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
     item: true,
     xs: 12,
     sm: 6,
@@ -1832,6 +2101,22 @@ function CenteredGrid() {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 43
+    },
+    __self: this
+  }, "xs=3")), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 12,
+    sm: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 45
+    },
+    __self: this
+  }, __jsx(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: classes.paper,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 46
     },
     __self: this
   }, "xs=3"))));
@@ -3453,6 +3738,191 @@ var AppBar = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Ap
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AppBar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AppBar */ "./node_modules/@material-ui/core/esm/AppBar/AppBar.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _AppBar__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/Avatar/Avatar.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/Avatar/Avatar.js ***!
+  \*************************************************************/
+/*! exports provided: styles, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      position: 'relative',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0,
+      width: 40,
+      height: 40,
+      fontFamily: theme.typography.fontFamily,
+      fontSize: theme.typography.pxToRem(20),
+      lineHeight: 1,
+      borderRadius: '50%',
+      overflow: 'hidden',
+      userSelect: 'none'
+    },
+
+    /* Styles applied to the root element if there are children and not `src` or `srcSet`. */
+    colorDefault: {
+      color: theme.palette.background.default,
+      backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
+    },
+
+    /* Styles applied to the root element if `variant="circle"`. */
+    circle: {},
+
+    /* Styles applied to the root element if `variant="rounded"`. */
+    rounded: {
+      borderRadius: theme.shape.borderRadius
+    },
+
+    /* Styles applied to the root element if `variant="square"`. */
+    square: {
+      borderRadius: 0
+    },
+
+    /* Styles applied to the img element if either `src` or `srcSet` is defined. */
+    img: {
+      width: '100%',
+      height: '100%',
+      textAlign: 'center',
+      // Handle non-square image. The property isn't supported by IE 11.
+      objectFit: 'cover'
+    }
+  };
+};
+var Avatar = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Avatar(props, ref) {
+  var alt = props.alt,
+      childrenProp = props.children,
+      classes = props.classes,
+      className = props.className,
+      _props$component = props.component,
+      Component = _props$component === void 0 ? 'div' : _props$component,
+      imgProps = props.imgProps,
+      sizes = props.sizes,
+      src = props.src,
+      srcSet = props.srcSet,
+      _props$variant = props.variant,
+      variant = _props$variant === void 0 ? 'circle' : _props$variant,
+      other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["alt", "children", "classes", "className", "component", "imgProps", "sizes", "src", "srcSet", "variant"]);
+
+  var children = null;
+  var img = src || srcSet;
+
+  if (img) {
+    children = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("img", Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+      alt: alt,
+      src: src,
+      srcSet: srcSet,
+      sizes: sizes,
+      className: classes.img
+    }, imgProps));
+  } else {
+    children = childrenProp;
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Component, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, classes.system, classes[variant], className, !img && classes.colorDefault),
+    ref: ref
+  }, other), children);
+});
+ true ? Avatar.propTypes = {
+  /**
+   * Used in combination with `src` or `srcSet` to
+   * provide an alt attribute for the rendered `img` element.
+   */
+  alt: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+
+  /**
+   * Used to render icon or text elements inside the Avatar if `src` is not set.
+   * This can be an element, or just a string.
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.node,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.elementType,
+
+  /**
+   * Attributes applied to the `img` element if the component
+   * is used to display an image.
+   */
+  imgProps: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object,
+
+  /**
+   * The `sizes` attribute for the `img` element.
+   */
+  sizes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+
+  /**
+   * The `src` attribute for the `img` element.
+   */
+  src: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+
+  /**
+   * The `srcSet` attribute for the `img` element.
+   */
+  srcSet: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+
+  /**
+   * The shape of the avatar.
+   */
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.oneOf(['circle', 'rounded', 'square'])
+} : undefined;
+/* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_5__["default"])(styles, {
+  name: 'MuiAvatar'
+})(Avatar));
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/Avatar/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/Avatar/index.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Avatar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Avatar */ "./node_modules/@material-ui/core/esm/Avatar/Avatar.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _Avatar__WEBPACK_IMPORTED_MODULE_0__["default"]; });
 
 
 
@@ -9073,6 +9543,98 @@ var ListItem = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ListItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListItem */ "./node_modules/@material-ui/core/esm/ListItem/ListItem.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _ListItem__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/ListItemAvatar/ListItemAvatar.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/ListItemAvatar/ListItemAvatar.js ***!
+  \*****************************************************************************/
+/*! exports provided: styles, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+/* harmony import */ var _List_ListContext__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../List/ListContext */ "./node_modules/@material-ui/core/esm/List/ListContext.js");
+
+
+
+
+
+
+
+var styles = {
+  /* Styles applied to the root element. */
+  root: {
+    minWidth: 56,
+    flexShrink: 0
+  },
+
+  /* Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
+  alignItemsFlexStart: {
+    marginTop: 8
+  }
+};
+/**
+ * A simple wrapper to apply `List` styles to an `Avatar`.
+ */
+
+var ListItemAvatar = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function ListItemAvatar(props, ref) {
+  var classes = props.classes,
+      className = props.className,
+      other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["classes", "className"]);
+
+  var context = react__WEBPACK_IMPORTED_MODULE_2___default.a.useContext(_List_ListContext__WEBPACK_IMPORTED_MODULE_6__["default"]);
+  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, className, context.alignItems === 'flex-start' && classes.alignItemsFlexStart),
+    ref: ref
+  }, other));
+});
+ true ? ListItemAvatar.propTypes = {
+  /**
+   * The content of the component – normally `Avatar`.
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.element.isRequired,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string
+} : undefined;
+/* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_5__["default"])(styles, {
+  name: 'MuiListItemAvatar'
+})(ListItemAvatar));
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/ListItemAvatar/index.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/ListItemAvatar/index.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ListItemAvatar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListItemAvatar */ "./node_modules/@material-ui/core/esm/ListItemAvatar/ListItemAvatar.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _ListItemAvatar__WEBPACK_IMPORTED_MODULE_0__["default"]; });
 
 
 
@@ -15364,6 +15926,99 @@ exports.default = _default;
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/icons/CategorySharp.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@material-ui/icons/CategorySharp.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)(_react.default.createElement(_react.default.Fragment, null, _react.default.createElement("path", {
+  d: "M12 2l-5.5 9h11z"
+}), _react.default.createElement("circle", {
+  cx: "17.5",
+  cy: "17.5",
+  r: "4.5"
+}), _react.default.createElement("path", {
+  d: "M3 13.5h8v8H3z"
+})), 'CategorySharp');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/icons/DescriptionSharp.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@material-ui/icons/DescriptionSharp.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
+  d: "M14 2H4v20h16V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"
+}), 'DescriptionSharp');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/icons/LocalOfferSharp.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@material-ui/icons/LocalOfferSharp.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
+  d: "M22.83 12.99L11.83 2H2v9.83l10.99 10.99 9.84-9.83zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"
+}), 'LocalOfferSharp');
+
+exports.default = _default;
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/icons/Menu.js":
 /*!*************************************************!*\
   !*** ./node_modules/@material-ui/icons/Menu.js ***!
@@ -15417,6 +16072,47 @@ var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/crea
 var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
   d: "M19 3H4.99c-1.11 0-1.98.9-1.98 2L3 19c0 1.1.88 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 12h-4c0 1.66-1.35 3-3 3s-3-1.34-3-3H4.99V5H19v10zm-3-5h-2V7h-4v3H8l4 4 4-4z"
 }), 'MoveToInbox');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/icons/PeopleAltSharp.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@material-ui/icons/PeopleAltSharp.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)(_react.default.createElement(_react.default.Fragment, null, _react.default.createElement("path", {
+  fillRule: "evenodd",
+  d: "M16.67 13.13C18.04 14.06 19 15.32 19 17v3h4v-3c0-2.18-3.57-3.47-6.33-3.87z",
+  clipRule: "evenodd"
+}), _react.default.createElement("circle", {
+  cx: "9",
+  cy: "8",
+  r: "4",
+  fillRule: "evenodd",
+  clipRule: "evenodd"
+}), _react.default.createElement("path", {
+  fillRule: "evenodd",
+  d: "M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4c-.47 0-.91.1-1.33.24C14.5 5.27 15 6.58 15 8s-.5 2.73-1.33 3.76c.42.14.86.24 1.33.24zM9 13c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z",
+  clipRule: "evenodd"
+})), 'PeopleAltSharp');
 
 exports.default = _default;
 

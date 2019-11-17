@@ -93,6 +93,52 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./actions/admin.js":
+/*!**************************!*\
+  !*** ./actions/admin.js ***!
+  \**************************/
+/*! exports provided: getData, getBlogsData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getData", function() { return getData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBlogsData", function() { return getBlogsData; });
+/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! isomorphic-fetch */ "isomorphic-fetch");
+/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./config.js");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth */ "./actions/auth.js");
+
+
+
+const getData = token => {
+  console.log(`${_config__WEBPACK_IMPORTED_MODULE_1__["API"]}/admin/data`);
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()(`${_config__WEBPACK_IMPORTED_MODULE_1__["API"]}/admin/data`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`
+    }
+  }).then(res => {
+    Object(_auth__WEBPACK_IMPORTED_MODULE_2__["handleResponse"])(res);
+    return res.json();
+  }).catch(error => error);
+};
+const getBlogsData = token => {
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()(`${_config__WEBPACK_IMPORTED_MODULE_1__["API"]}/admin/data/blogs`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`
+    }
+  }).then(res => {
+    Object(_auth__WEBPACK_IMPORTED_MODULE_2__["handleResponse"])(res);
+    return res.json();
+  }).catch(error => error);
+};
+
+/***/ }),
+
 /***/ "./actions/auth.js":
 /*!*************************!*\
   !*** ./actions/auth.js ***!
@@ -1572,6 +1618,240 @@ const IsAdminRoute = ({
 
 /***/ }),
 
+/***/ "./components/admin/BlogData.jsx":
+/*!***************************************!*\
+  !*** ./components/admin/BlogData.jsx ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions_admin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/admin */ "./actions/admin.js");
+/* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/auth */ "./actions/auth.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "@material-ui/core/styles");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _material_ui_core_List__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/List */ "@material-ui/core/List");
+/* harmony import */ var _material_ui_core_List__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_List__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/ListItem */ "@material-ui/core/ListItem");
+/* harmony import */ var _material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/ListItemText */ "@material-ui/core/ListItemText");
+/* harmony import */ var _material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _material_ui_core_ListItemAvatar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/ListItemAvatar */ "@material-ui/core/ListItemAvatar");
+/* harmony import */ var _material_ui_core_ListItemAvatar__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_ListItemAvatar__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/Avatar */ "@material-ui/core/Avatar");
+/* harmony import */ var _material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _material_ui_icons_LocalOfferSharp__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/icons/LocalOfferSharp */ "@material-ui/icons/LocalOfferSharp");
+/* harmony import */ var _material_ui_icons_LocalOfferSharp__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_LocalOfferSharp__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _material_ui_icons_CategorySharp__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/icons/CategorySharp */ "@material-ui/icons/CategorySharp");
+/* harmony import */ var _material_ui_icons_CategorySharp__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_CategorySharp__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _material_ui_icons_PeopleAltSharp__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/icons/PeopleAltSharp */ "@material-ui/icons/PeopleAltSharp");
+/* harmony import */ var _material_ui_icons_PeopleAltSharp__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_PeopleAltSharp__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _material_ui_icons_DescriptionSharp__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/icons/DescriptionSharp */ "@material-ui/icons/DescriptionSharp");
+/* harmony import */ var _material_ui_icons_DescriptionSharp__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_DescriptionSharp__WEBPACK_IMPORTED_MODULE_12__);
+var _jsxFileName = "/Users/baselmunawwar/Desktop/nextjs/firstApp/components/admin/BlogData.jsx";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+
+
+
+
+
+
+
+
+
+const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["makeStyles"])(theme => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper
+  }
+}));
+/* harmony default export */ __webpack_exports__["default"] = (() => {
+  const classes = useStyles();
+  const {
+    0: data,
+    1: setData
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    blogs: 0,
+    users: 0,
+    categories: 0,
+    tags: 0
+  });
+  const {
+    blogs,
+    users,
+    categories,
+    tags
+  } = data;
+  const token = Object(_actions_auth__WEBPACK_IMPORTED_MODULE_2__["getCookie"])('token');
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    Object(_actions_admin__WEBPACK_IMPORTED_MODULE_1__["getData"])(token).then(res => {
+      if (res.error) {
+        return console.log(res.error);
+      }
+
+      const {
+        blogs,
+        users,
+        categories,
+        tags
+      } = res;
+      setData({
+        blogs,
+        users,
+        categories,
+        tags
+      });
+    });
+  }, []);
+  return __jsx(_material_ui_core_List__WEBPACK_IMPORTED_MODULE_4___default.a, {
+    className: classes.root,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39
+    },
+    __self: undefined
+  }, __jsx(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_5___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 40
+    },
+    __self: undefined
+  }, __jsx(_material_ui_core_ListItemAvatar__WEBPACK_IMPORTED_MODULE_7___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 41
+    },
+    __self: undefined
+  }, __jsx(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_8___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 42
+    },
+    __self: undefined
+  }, __jsx(_material_ui_icons_DescriptionSharp__WEBPACK_IMPORTED_MODULE_12___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 43
+    },
+    __self: undefined
+  }))), __jsx(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_6___default.a, {
+    primary: "Blogs",
+    secondary: blogs,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 46
+    },
+    __self: undefined
+  })), __jsx(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_5___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48
+    },
+    __self: undefined
+  }, __jsx(_material_ui_core_ListItemAvatar__WEBPACK_IMPORTED_MODULE_7___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49
+    },
+    __self: undefined
+  }, __jsx(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_8___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: undefined
+  }, __jsx(_material_ui_icons_PeopleAltSharp__WEBPACK_IMPORTED_MODULE_11___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: undefined
+  }))), __jsx(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_6___default.a, {
+    primary: "Users",
+    secondary: users,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 54
+    },
+    __self: undefined
+  })), __jsx(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_5___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 56
+    },
+    __self: undefined
+  }, __jsx(_material_ui_core_ListItemAvatar__WEBPACK_IMPORTED_MODULE_7___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 57
+    },
+    __self: undefined
+  }, __jsx(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_8___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 58
+    },
+    __self: undefined
+  }, __jsx(_material_ui_icons_LocalOfferSharp__WEBPACK_IMPORTED_MODULE_9___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 59
+    },
+    __self: undefined
+  }))), __jsx(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_6___default.a, {
+    primary: "Tags",
+    secondary: tags,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 62
+    },
+    __self: undefined
+  })), __jsx(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_5___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 64
+    },
+    __self: undefined
+  }, __jsx(_material_ui_core_ListItemAvatar__WEBPACK_IMPORTED_MODULE_7___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 65
+    },
+    __self: undefined
+  }, __jsx(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_8___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 66
+    },
+    __self: undefined
+  }, __jsx(_material_ui_icons_CategorySharp__WEBPACK_IMPORTED_MODULE_10___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 67
+    },
+    __self: undefined
+  }))), __jsx(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_6___default.a, {
+    primary: "Categories",
+    secondary: categories,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 70
+    },
+    __self: undefined
+  })));
+});
+
+/***/ }),
+
 /***/ "./components/admin/SideList.jsx":
 /*!***************************************!*\
   !*** ./components/admin/SideList.jsx ***!
@@ -1713,9 +1993,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Grid */ "@material-ui/core/Grid");
 /* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _SideList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SideList */ "./components/admin/SideList.jsx");
+/* harmony import */ var _BlogData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BlogData */ "./components/admin/BlogData.jsx");
 var _jsxFileName = "/Users/baselmunawwar/Desktop/nextjs/firstApp/components/admin/index.jsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -1736,7 +2018,7 @@ function CenteredGrid() {
     className: classes.root,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 21
     },
     __self: this
   }, __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
@@ -1744,7 +2026,7 @@ function CenteredGrid() {
     spacing: 3,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 22
     },
     __self: this
   }, __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
@@ -1752,20 +2034,20 @@ function CenteredGrid() {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22
+      lineNumber: 23
     },
     __self: this
   }, __jsx(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2___default.a, {
     className: classes.paper,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 24
     },
     __self: this
   }, __jsx(_SideList__WEBPACK_IMPORTED_MODULE_4__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 25
     },
     __self: this
   }))), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
@@ -1774,36 +2056,26 @@ function CenteredGrid() {
     md: 6,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 28
     },
     __self: this
   }, __jsx(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2___default.a, {
     className: classes.paper,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 29
     },
     __self: this
-  }, "xs=6")), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
-    item: true,
-    xs: 12,
-    md: 6,
+  }, __jsx(_BlogData__WEBPACK_IMPORTED_MODULE_5__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 30
     },
     __self: this
-  }, __jsx(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    className: classes.paper,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 31
-    },
-    __self: this
-  }, "xs=6")), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
+  }))), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
     item: true,
     xs: 12,
-    sm: 6,
+    md: 6,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 33
@@ -1816,7 +2088,7 @@ function CenteredGrid() {
       lineNumber: 34
     },
     __self: this
-  }, "xs=3")), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
+  }, "xs=6")), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
     item: true,
     xs: 12,
     sm: 6,
@@ -1862,6 +2134,22 @@ function CenteredGrid() {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 43
+    },
+    __self: this
+  }, "xs=3")), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
+    item: true,
+    xs: 12,
+    sm: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 45
+    },
+    __self: this
+  }, __jsx(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    className: classes.paper,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 46
     },
     __self: this
   }, "xs=3"))));
@@ -4014,6 +4302,17 @@ module.exports = require("@material-ui/core/AppBar");
 
 /***/ }),
 
+/***/ "@material-ui/core/Avatar":
+/*!*******************************************!*\
+  !*** external "@material-ui/core/Avatar" ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/Avatar");
+
+/***/ }),
+
 /***/ "@material-ui/core/Box":
 /*!****************************************!*\
   !*** external "@material-ui/core/Box" ***!
@@ -4179,6 +4478,17 @@ module.exports = require("@material-ui/core/ListItem");
 
 /***/ }),
 
+/***/ "@material-ui/core/ListItemAvatar":
+/*!***************************************************!*\
+  !*** external "@material-ui/core/ListItemAvatar" ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/ListItemAvatar");
+
+/***/ }),
+
 /***/ "@material-ui/core/ListItemIcon":
 /*!*************************************************!*\
   !*** external "@material-ui/core/ListItemIcon" ***!
@@ -4322,6 +4632,39 @@ module.exports = require("@material-ui/icons/AccountCircleSharp");
 
 /***/ }),
 
+/***/ "@material-ui/icons/CategorySharp":
+/*!***************************************************!*\
+  !*** external "@material-ui/icons/CategorySharp" ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/CategorySharp");
+
+/***/ }),
+
+/***/ "@material-ui/icons/DescriptionSharp":
+/*!******************************************************!*\
+  !*** external "@material-ui/icons/DescriptionSharp" ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/DescriptionSharp");
+
+/***/ }),
+
+/***/ "@material-ui/icons/LocalOfferSharp":
+/*!*****************************************************!*\
+  !*** external "@material-ui/icons/LocalOfferSharp" ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/LocalOfferSharp");
+
+/***/ }),
+
 /***/ "@material-ui/icons/Menu":
 /*!******************************************!*\
   !*** external "@material-ui/icons/Menu" ***!
@@ -4341,6 +4684,17 @@ module.exports = require("@material-ui/icons/Menu");
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/MoveToInbox");
+
+/***/ }),
+
+/***/ "@material-ui/icons/PeopleAltSharp":
+/*!****************************************************!*\
+  !*** external "@material-ui/icons/PeopleAltSharp" ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/PeopleAltSharp");
 
 /***/ }),
 
