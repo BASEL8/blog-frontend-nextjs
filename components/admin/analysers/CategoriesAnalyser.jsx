@@ -39,11 +39,8 @@ export default () => {
             console.log(res.error)
           }
           else { 
-            console.log(res)
             const result = [res, catagories].reduce((a, b) => a.map((c, i) => Object.assign({}, c, b[i])));
             setChartData(result)
-            console.log(result)
-
           }
         })
       }
@@ -55,7 +52,7 @@ export default () => {
 	labels: chartData.map(({name},i)=>name),
 	datasets: [{
 		data:chartData.map(({count},i)=>count),
-		backgroundColor:  chartData.map(({ name, _id }, i) => colorHash.hex(name)),
+		backgroundColor:  chartData.map(({ name, _id }, i) => colorHash.hex(name+'2D')),
 		hoverBackgroundColor: [
 		'#FF6384',
 		'#36A2EB',

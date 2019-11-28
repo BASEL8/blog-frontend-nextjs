@@ -9,7 +9,7 @@ import Layout from '../components/Layout';
 export default function Index() {
   return (
     <Layout>
-      <Container maxWidth="sm">
+      <Container maxWidth="xl" fixed>
         <Box my={4}>
           <Typography variant="h4" component="h1" gutterBottom>
             Next.js example

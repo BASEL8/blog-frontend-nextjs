@@ -6,6 +6,8 @@ import { isAuth } from '../../../actions/auth'
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -36,18 +38,14 @@ const useStyles = makeStyles(theme => ({
     color: 'darkred'
   }
 }));
-const Card = ({ blog }) => {
+const Card = ({ blog ,small}) => {
   const classes = useStyles()
-  const ShowBlogTags = () => {
-    return blog.tags.map((category, i) => (
-      <Link key={i} href={`/tags/${category.slug}`} className={classes.tagLink}>
-        <span>{category.name}</span>
-      </Link>
-    ))
-  }
-
   return (
-    <Box boxShadow={1} m={0} p={2} style={{ display: 'flex', marginTop: 10, marginBottom: 10,flexWrap:'wrap' }}>
+    <Grid item md={12} md={small ? 4 :12} >
+     <Box boxShadow={1} m={0} p={2} style={{ display: 'flex', marginTop: 10, marginBottom: 10, flexWrap: 'wrap' }}>
+       <div style={{ height: 200, width: 150, display: 'flex', alignItems: 'center', justifyContent: 'center' ,flexBasis:200,flex:1}}>
+        <img style={{ height: '100%', width: '100%' ,objectFit:'contain'}} src={`${API}/blog/photo/${blog.slug}`} />
+      </div>
       <div style={{ flex: 1,flexBasis:400 }} className={classes.holder}>
         <div  >
          {blog.postedBy ? <div>
@@ -65,19 +63,9 @@ const Card = ({ blog }) => {
         <Link href={`/blogs/${blog.slug}`}>
           <h6 className="font-wight-bold">{blog.title}</h6>
         </Link>
-          <p style={{ fontSize: 15 , wordWrap: 'break-word',textOverflow: 'wrap'}}>{blog.excerpt}</p>
-          <Link href={`/blogs/${blog.slug}`}>
-              <span className="btn btn-outline-primary btn-lg btn-sm border-0">
-                read more
-               </span>
-          </Link>
-          {ShowBlogTags()}
-      </div>
-      <div style={{ height: 200, width: 150, display: 'flex', alignItems: 'center', justifyContent: 'center' ,flexBasis:200,flex:1}}>
-        <img style={{ height: '100%', width: '100%' ,objectFit:'contain'}} src={`${API}/blog/photo/${blog.slug}`} />
       </div>
     </Box>
-
-  )
+    </Grid>
+   )
 }
 export default Card

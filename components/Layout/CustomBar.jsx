@@ -14,7 +14,7 @@ import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
 import PropTypes from 'prop-types';
 import { NAME } from '../../config'
-import Search from './Search'
+import Search from './SearchCopy'
 import ListItemText from '@material-ui/core/ListItemText';
 import Router from 'next/router'
 import ListItem from '@material-ui/core/ListItem';

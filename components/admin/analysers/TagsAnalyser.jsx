@@ -39,9 +39,11 @@ export default () => {
             console.log(res.error)
           }
           else {
-            const result = [res, tags].reduce((a, b) => a.map((c, i) => Object.assign({}, c, b[i])));
+            const result = [res.sort((a, b) => a[1] + b[1]), tags.sort((a, b) => a[1] + b[1])].reduce((a, b) => a.map((c, i) => Object.assign({}, c, b[i])));
             setChartData(result)
-
+            console.log('res', res.sort())
+            console.log('tags', tags.sort())
+            console.log('result', result)
           }
         })
       }

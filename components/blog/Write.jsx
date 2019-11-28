@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
 }));
 const CreateBlog = () => {
   const classes = useStyles();
-  const [values, setValues] = useState({ title: '', error: false, success: false, formData: '', photo: '', timeToRead: 0 })
+  const [values, setValues] = useState({ title: 'test', error: false, success: false, formData: '', photo: '', timeToRead: 0 })
   const [searchResult, setSearchResult] = useState([])
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
@@ -175,10 +175,12 @@ const CreateBlog = () => {
               autoComplete='off'
               value={title}
             />
-            {title && searchResult.length > 0 && <div className={classes.searchResultHolder}>
-              {searchResult.map((result, i) => <div key={i}> <Link href={`/blogs/${result.slug}`}>{result.title}</Link> </div>)}
-            </div>}
+            
           </div>
+          {title && searchResult.length > 0 && <Paper style={{marginTop:10,paddingBottom:10,border:'1px solid #D6D9DC'}}>
+            <div style={{width:'100%',background:'#FAFAFB',padding:10,borderBottom:'1px solid #D6D9DC'}}>Similar questions</div>
+              {searchResult.map((result, i) => <div key={i}> <Link href={`/blogs/${result.slug}`}>{result.title}</Link> </div>)}
+            </Paper>}
           <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
             <input
               accept="image/*"

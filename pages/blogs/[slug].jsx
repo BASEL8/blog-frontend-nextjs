@@ -16,6 +16,8 @@ import DisqusThread from './DisqusThread'
 import GradeIcon from '@material-ui/icons/Grade';
 import Card from '../../components/blog/layout/Card'
 import {arrayBufferToBase64} from '../../actions/helpers'
+import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
 const useStyles = makeStyles(theme => ({
   root: { display: 'flex', flexDirection: 'column' },
   margin: {
@@ -167,9 +169,7 @@ const SinglePage = ({ blog, query }) => {
 
   const showRelatedBlog = () => {
     return related.map((blog, i) => (
-      <div key={i} style={{margin:5,flex:1}}>
-      <Card blog={blog}  />
-      </div>
+      <Card blog={blog} small={true}   key={i}/>
     ));
   };
   const showDisqusThread = () => {
@@ -181,9 +181,14 @@ const SinglePage = ({ blog, query }) => {
     <>
       {head()}
       <Layout>
-        <div>
-          <div className={classes.root}>
-            <div>
+        <Grid  container spacing={3}>
+          <Hidden mdDown>
+          <Grid item lg={3}>
+          </Grid>
+          </Hidden>
+          <Grid  item lg={6}>
+            <div className={classes.root}>
+            <div >
               <div>
                 <h3 style={{textAlign:'center'}}>{blog.title}</h3>
                 <div className={classes.userInfo}>
@@ -233,32 +238,43 @@ const SinglePage = ({ blog, query }) => {
             </section>
           </div>
           <div style={{ marginBottom: 15,marginTop:20 }}>
-            <div style={{ marginBottom: 15 }}>
-  {showBlogCategories(blog)}
+            <div style={{ marginBottom: 15 }}>{showBlogCategories(blog)}
             </div>
             <div>
               {showBlogTags(blog)}
             </div>
-            <div style={{display:'flex',alignItems:'center',justifyContent:'flex-start',marginTop:15}}>
+            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:15}}>
+              <div style={{display:'flex',alignItems:'center',justifyContent:'flex-start'}}>
               <div 
               style={{ width: 55, height: 55, borderRadius: '50%', border: '1px solid lightgray' ,display:'flex',alignItems:'center',justifyContent:'center'}} className="d-flex align-items-center justify-content-center">
                <GradeIcon/>
               </div>
               <p style={{marginLeft : 15}}>1 star</p>
+              </div>
+            <div>
+              <Button>
+                <a href={`http://twitter.com/share?${DOMAIN}/blogs/${blog.slug}`} target="_blank">Twitter</a>
+              </Button>
+              <Button>
+                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${DOMAIN}/blogs/${blog.slug}`} target="_blank">Facebook</a>
+              </Button>
+              <Button>  
+                <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${DOMAIN}/blogs/${blog.slug}`} target="_blank">Linkedin</a></Button>
+            </div>
             </div>
           </div>
-          <div className="">
+         </Grid>
+          <Hidden mdDown>
+          <Grid item lg={3}>
+          </Grid>
+          </Hidden>
+        </Grid>
+        <div className="">
             <h4>Related blogs</h4>
-            <div style={{ display: 'flex' }}>
+            <Grid container spacing={3}>
               {showRelatedBlog()}
-            </div>
-
+            </Grid>
           </div>
-
-          <div className=" pb-5">
-            <p>show comments</p>
-          </div>
-        </div>
         {showDisqusThread()}
       </Layout>
     </>
@@ -268,7 +284,6 @@ const SinglePage = ({ blog, query }) => {
 SinglePage.getInitialProps = (ctx) => {
 
   const token = ctx.cookie.get('token')
-  console.log(token)
   if (token) {
     return singleBlog(token, ctx.query.slug)
       .then(data => {
