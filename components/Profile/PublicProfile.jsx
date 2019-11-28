@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Tabs from '../profile/Tabs'
+import Tabs from './Tabs'
 import { getPublicProfile } from '../../actions/user'
 import { arrayBufferToBase64 } from '../../actions/helpers'
 import { makeStyles } from '@material-ui/core/styles';
